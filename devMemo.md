@@ -34,13 +34,13 @@
   1. スタートポイントを設定
   2. 候補ポイントを設定（隣接グリッド）
   3. 各候補ポイントの電位ポテンシャルを下式で計算
-     $$ \phi_i = \sum^n_{j=0} \left( c_1 - \frac{c_2}{r_{i,j}} \right) $$
+     $$ \phi_i = \sum^n_{j=0} \left( c_1 + \frac{c_2}{r_{i,j}} \right) $$
      $$ c_1 = - \left( \frac{R_1}{R_2} - 1 \right)^{-1}, c_2 = \left( \frac{1}{R_2} - \frac{1}{R_1} \right)^{-1} $$
      $ R_1 $ はグリッドに配置される電荷を球とした時の半径で、グリッド高さの半分。
      $ r_{i,j} $ はグリッド $ i $ から電荷 $ j $ までの距離であり、$ n $ は電荷の合計数
   4. 下式で表される確立に基づき進行グリッドを決定
      $$ p_i = \frac{ (\Phi_i)^\eta }{ \Sigma^n_{j=1} (\Phi_j)^\eta } $$
-     $$ \Phi_i = \frac{\phi_i - \phi_{min}}{\phi_{max} - √} $$
+     $$ \Phi_i = \frac{\phi_i - \phi_{min}}{\phi_{max} - \phi_{min}} $$
      $ p_i $ は $ i $ 番目の進行候補地点の確率、 $ n $ は進行候補地点の個数、$ \eta $ は図形の広がりやすさを表す変数（ $ 0 \leq \eta \leq 4 $ ）
   5. 下式により全ての候補点の電位ポテンシャルを更新する
      $$ \phi^{t+1}_i = \phi^t_i + \left( c_1 - \frac{c_2}{r_{i,t+1}} \right) $$

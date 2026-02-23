@@ -40,7 +40,8 @@ def calcElecPotential(candidateSite, growthSite, endSite):
             phi = 0
             for growthSite_i in growthSite:
                 r = np.sqrt((candidate_i[0]-growthSite_i[0])**2 + (candidate_i[1]-growthSite_i[1])**2)
-                phi = phi + (c1 + c2/r)
+                # phi = phi + (c1 + c2/r)
+                phi = phi + (1 - R1/r)
 
         # update of the potential
         else:
@@ -182,17 +183,17 @@ def mainLoop(gridSize, originPnt, endCond, eta):
 if __name__ == "__main__":
 
     # User Input
-    scale = 6
+    scale = 3
     gridSize = [16*10*scale, 9*10*scale]
     originPnt = "TopCenter" # "TopCenter", "Center" or "BottomCenter"
-    endCond = "BottomCenter" # "BottomEdge", "LeftEdge", "RightEdge", "TopEdge" or "BottomCenter"
-    eta = 10 # User parameter
+    endCond = "BottomEdge" # "BottomEdge", "LeftEdge", "RightEdge", "TopEdge" or "BottomCenter"
+    eta = 15 # User parameter
 
     # Calculation
     growthSite = mainLoop(gridSize, originPnt, endCond, eta)
 
-    # Visualization
-    fig, ax = plt.subplots(figsize=(8, 4.5))
+    # # Visualization (completed)
+    fig, ax = plt.subplots(figsize=(16, 9))
     data = np.array(growthSite).T
     ax.scatter(data[0,:], data[1,:], color="white", marker="o", alpha=0.1/scale**(1/2), edgecolors="none", s=500/(scale**2))
     ax.scatter(data[0,:], data[1,:], color="white", marker="s", alpha=0.5, edgecolors="none", s=10/(scale**2))
@@ -201,3 +202,5 @@ if __name__ == "__main__":
     ax.set_facecolor("black")
     plt.show()
 
+    # save data
+    np.save(r"../res/data.npy", growthSite)
