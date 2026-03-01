@@ -183,11 +183,11 @@ def mainLoop(gridSize, originPnt, endCond, eta):
 if __name__ == "__main__":
 
     # User Input
-    scale = 3
+    scale = 1
     gridSize = [16*10*scale, 9*10*scale]
     originPnt = "TopCenter" # "TopCenter", "Center" or "BottomCenter"
     endCond = "BottomEdge" # "BottomEdge", "LeftEdge", "RightEdge", "TopEdge" or "BottomCenter"
-    eta = 15 # User parameter
+    eta = 20 # User parameter
 
     # Calculation
     growthSite = mainLoop(gridSize, originPnt, endCond, eta)
